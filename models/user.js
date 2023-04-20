@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const thoughtsSchema = require("./thoughts");
 
 // User Schema definition
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
   {
     username: { type: String, required: true, unique: true, trim: true },
     email: {
