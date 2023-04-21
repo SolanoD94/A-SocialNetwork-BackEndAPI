@@ -44,7 +44,4 @@ userSchema.virtual("friendCount").get(function () {
 // Create User Model
 const User = model("User", userSchema);
 
-// Error handler function to be called when an error occurs when trying to save a document
-//const handleError = (err) => console.error(err);
-
 module.exports = User;

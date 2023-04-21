@@ -24,7 +24,4 @@ const thoughtsSchema = new mongoose.Schema({
 // Create Thoughts Model
 const Thoughts = mongoose.model("Thoughts", thoughtsSchema);
 
-// Error handler function to be called when an error occurs when trying to save a document
-//const handleError = (err) => console.error(err);
-
 module.exports = Thoughts;
