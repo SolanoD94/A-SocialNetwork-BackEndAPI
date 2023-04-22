@@ -1,4 +1,4 @@
-const router = require("express").Router;
+const router = require("express").Router();
 const {
   getAllThoughts,
   getSingleThought,
@@ -8,6 +8,7 @@ const {
   newReaction,
   deleteReaction,
 } = require("../../controllers/thoughtsController");
+// POST to create a new thought (don't forget to push the created thought's _id to the associated user's thoughts array field)
 
 // /api/thoughts
 router.route("/").get(getAllThoughts).post(newThought);
@@ -18,15 +19,6 @@ router
   .get(getSingleThought)
   .put(updateThought)
   .delete(deleteThought);
-
-// POST to create a new thought (don't forget to push the created thought's _id to the associated user's thoughts array field)
-
-// // example data
-// {
-//   "thoughtText": "Here's a cool thought...",
-//   "username": "lernantino",
-//   "userId": "5edff358a0fcb779aa7b118b"
-// }
 
 // /api/thoughts/:thoughtId/reactions
 router.route("/:thoughtId/reactions").post(newReaction).delete(deleteReaction);
