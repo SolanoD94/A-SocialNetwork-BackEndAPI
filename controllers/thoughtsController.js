@@ -1,4 +1,5 @@
 const Thoughts = require("../models/thoughts");
+const User = require("../models/user");
 
 module.exports = {
   // GET to get all thoughts
@@ -32,6 +33,18 @@ module.exports = {
   async newThought(req, res) {
     try {
       const newThought = await Thoughts.create(req.body);
+      const user = await User.findOneAndUpdate(
+        { _id: req.body.userId },
+        { $addToSet: { thoughts: newThought._id } },
+        { new: true }
+      );
+
+      if (!user) {
+        return res.status(404).json({
+          message: "Thought created, but no user found with that Id.",
+        });
+      }
+
       res.json(newThought);
     } catch (err) {
       res.status(500).json(err);
@@ -80,10 +93,10 @@ module.exports = {
   // POST to create a reaction stored in a single thought's reactions array field
   async newReaction(req, res) {
     try {
-      const newReaction = await Thoughts.create(req.body);
+      const { reactionBody } = await Thoughts.create(req.body);
       const thought = await Thoughts.findOneAndUpdate(
         { _id: req.body.thoughtId },
-        { $addToSet: { reactionId: newReaction._id } },
+        { $addToSet: { reactions: { reactionBody } } },
         { new: true }
       );
       if (!thought) {

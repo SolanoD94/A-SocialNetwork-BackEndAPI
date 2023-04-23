@@ -8,7 +8,6 @@ const {
   newReaction,
   deleteReaction,
 } = require("../../controllers/thoughtsController");
-// POST to create a new thought (don't forget to push the created thought's _id to the associated user's thoughts array field)
 
 // /api/thoughts
 router.route("/").get(getAllThoughts).post(newThought);
