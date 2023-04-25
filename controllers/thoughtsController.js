@@ -93,10 +93,9 @@ module.exports = {
   // POST to create a reaction stored in a single thought's reactions array field
   async newReaction(req, res) {
     try {
-      const { reactionBody } = await Thoughts.create(req.body);
       const thought = await Thoughts.findOneAndUpdate(
-        { _id: req.body.thoughtId },
-        { $addToSet: { reactions: { reactionBody } } },
+        { _id: req.params.thoughtId },
+        { $addToSet: { reactions: req.body } },
         { new: true }
       );
       if (!thought) {
@@ -113,24 +112,16 @@ module.exports = {
   // DELETE to pull and remove a reaction by the reaction's reactionId value
   async deleteReaction(req, res) {
     try {
-      const thought = await Thoughts.findOneAndRemove({
-        _id: req.params.thoughtsId,
-      });
-
-      if (!thought) {
-        return res.status(404).json({ message: "No thought with this id!" });
-      }
-
       const reaction = await Thoughts.findOneAndUpdate(
-        { reactionId: req.params.reactionId },
-        { $pull: { reactionId: req.params.reactionId } },
+        {
+          _id: req.params.thoughtId,
+        },
+        { $pull: { reactions: { _id: req.params.reactionId } } },
         { new: true }
       );
 
       if (!reaction) {
-        return res
-          .status(404)
-          .json({ message: "Reaction created but no user with this id!" });
+        return res.status(404).json({ message: "Reaction wasn't found" });
       }
 
       res.json({ message: "Reaction successfully deleted!" });

@@ -20,7 +20,8 @@ router
   .delete(deleteThought);
 
 // /api/thoughts/:thoughtId/reactions
-router.route("/:thoughtId/reactions").post(newReaction).delete(deleteReaction);
+router.route("/:thoughtId/reactions").post(newReaction);
+router.route("/:thoughtId/reactions/:reactionId").delete(deleteReaction);
 
 // POST to create a reaction stored in a single thought's reactions array field
 
