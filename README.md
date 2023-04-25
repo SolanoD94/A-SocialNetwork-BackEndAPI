@@ -7,7 +7,7 @@
 - [Installation](#Installation)
 - [Contribution](#Contribution)
 - [License](#License)
-- [Deployment Link](#Deployment-Link)
+- [Video Link](#Video-Link)
 - [Questions](#Questions)
 
 ## Description
@@ -25,7 +25,10 @@ Remove a user's associated thoughts when deleted.
 ## License
 MIT
 
-## Deployment Link
+## Video Link
+https://drive.google.com/file/d/19Ggg8e7Wpq7LdqKxrUNy4787bnrmoG-d/view
+
+![SocialMediaAPI-Screenshot](https://user-images.githubusercontent.com/117420563/234364750-1bff68f6-2dad-4e78-8581-9c543fdfeb85.png)
 
 
 ## Questions
